@@ -1,26 +1,23 @@
-import { create } from 'zustand';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useUserStore = create((set, get) => ({
-  dailyReports: [],
-  loading: false,
-  error: null,
+export const useReportStore = create(
+  persist(
+    (set) => ({
+      dailyReports: [],
+      loading: false,
+      error: null,
 
-  setDailyReports: (reports) => set({ dailyReports: reports }),
-
-  setLoading: (loading) => set({ loading }),
-
-  setError: (error) => set({ error }),
-
-  addDailyReport: (report) =>
-    set({
-      dailyReports: [...get().dailyReports, report], 
+      setDailyReports: (reports) => set({ dailyReports: reports }),
+      addReport: (report) =>
+        set((state) => ({
+          dailyReports: [...state.dailyReports, report],
+        })),
+      setLoading: (loading) => set({ loading }),
+      setError: (error) => set({ error }),
     }),
-
-  updateDailyReport: (id, updatedReport) =>
-    set({
-      dailyReports: get().dailyReports.map((report) =>
-        report.id === id ? { ...report, ...updatedReport } : report
-      ),
-    }),
-
-}));
+    {
+      name: "daily-reports-storage", // Key in localStorage
+    }
+  )
+);
