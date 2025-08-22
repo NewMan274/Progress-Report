@@ -83,7 +83,7 @@ function NewReport() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+    <div className="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
       <div className="flex mb-5">
         <h1 className="text-2xl font-bold mb-2">
           New Report for: <span className="text-blue-400">{formatedDate}</span>
