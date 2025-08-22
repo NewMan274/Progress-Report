@@ -15,6 +15,7 @@ function NewReport() {
 
   const [startCh, setStartCh] = useState({ km: "", m: "" });
   const [endCh, setEndCh] = useState({ km: "", m: "" });
+  const [images, setImages] = useState([]);
 
   const handleStartChainage = useCallback((val) => {
     setStartCh(val);
@@ -56,7 +57,8 @@ function NewReport() {
       endChainage: dailyReports.endChainage,
       metresDone: dailyReports.metresDone,
       taskDescription: dailyReports.taskDescription,
-      generalRemark: dailyReports.generalRemark, 
+      generalRemark: dailyReports.generalRemark,
+      images: images.map(img => URL.createObjectURL(img)),
     };
 
     addReport(newReport);
@@ -72,29 +74,38 @@ function NewReport() {
       generalRemark: "",
     });
 
-    // Reset chainage inputs after submission
+    setImages([]);
+
     setResetChainage(true);
-    setTimeout(() => setResetChainage(false), 0); 
+    setTimeout(() => setResetChainage(false), 0);
 
     alert("Report submitted successfully!");
   };
 
   return (
-    <div>
-      <h1>New Report for: <span>{formatedDate}</span></h1>
-      <div>
-        <Link to="/">
-          Home
-        </Link>
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+      <div className="flex mb-5">
+        <h1 className="text-2xl font-bold mb-2">
+          New Report for: <span className="text-blue-400">{formatedDate}</span>
+        </h1>
+        <div className="ml-auto pt-1.5">
+          <Link to="/" className="text-blue-500 hover:underline">
+            Home
+          </Link>
+          <Link to="/archive" className="text-blue-500 hover:underline ml-3">
+            Archive
+          </Link>
+        </div>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div>
-          <label>Item of work</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Item of work</label>
           <select
             name="items"
             id="work-items"
             value={dailyReports.itemOfWork}
             onChange={(e) => setDailyReports(prev => ({ ...prev, itemOfWork: e.target.value }))}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="" disabled>Select an option</option>
             <option value="Excavation">Earthwork</option>
@@ -105,12 +116,13 @@ function NewReport() {
           </select>
         </div>
         <div>
-          <label>Weather Condition</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Weather Condition</label>
           <select
             name="weather"
             id="weather"
             value={dailyReports.weatherCondition}
             onChange={(e) => setDailyReports(prev => ({ ...prev, weatherCondition: e.target.value }))}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="" disabled>Select weather</option>
             <option value="Sunny">Sunny</option>
@@ -121,39 +133,78 @@ function NewReport() {
           </select>
         </div>
         <div>
-          <label>Starting CH</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Starting CH</label>
           <ChainageInput onChange={handleStartChainage} resetSignal={resetChainage} />
         </div>
         <div>
-          <label>Ending CH</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Ending CH</label>
           <ChainageInput onChange={handleEndChainage} resetSignal={resetChainage} />
         </div>
-
-        {/* New Metres Done */}
         <MetresDone
           startKm={startCh.km}
           startM={startCh.m}
           endKm={endCh.km}
           endM={endCh.m}
         />
-
         <div>
-          <label>Task Description</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Task Description</label>
           <textarea
             name="task-description"
             id="task-description"
             value={dailyReports.taskDescription}
             onChange={(e) => setDailyReports(prev => ({ ...prev, taskDescription: e.target.value }))}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
         <div>
-          <label>General Remark</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">General Remark</label>
           <textarea
             value={dailyReports.generalRemark}
             onChange={(e) => setDailyReports(prev => ({ ...prev, generalRemark: e.target.value }))}
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
-        <button type="submit">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Upload Pictures:
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            capture="environment"
+            onChange={(e) => {
+              const files = Array.from(e.target.files);
+              setImages(prev => [...prev, ...files]);
+            }}
+            className="block w-1/5 text-sm pl-3 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+          />
+          <div className="flex flex-wrap gap-4 mt-4">
+            {images.map((img, idx) => (
+              <div key={idx} className="relative">
+                <img
+                  src={URL.createObjectURL(img)}
+                  alt={`preview-${idx}`}
+                  className="w-24 h-24 object-cover rounded shadow"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setImages(prev => prev.filter((_, i) => i !== idx));
+                  }}
+                  className="absolute top-1 right-1 bg-red-200 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shadow hover:bg-red-300"
+                  title="Remove"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <button
+          type="submit"
+          className="w-1/4 mx-auto mt-4 px-6 py-2 bg-green-500 text-white rounded font-semibold hover:bg-blue-700 transition"
+        >
           Submit
         </button>
       </form>

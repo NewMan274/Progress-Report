@@ -27,6 +27,18 @@ function Archive() {
                     : value}
                 </p>
               ))}
+              {report.images && report.images.length > 0 && (
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  {report.images.map((imgUrl, idx) => (
+                    <img
+                      key={idx}
+                      src={imgUrl}
+                      alt={`report-img-${idx}`}
+                      style={{ width: 100, height: 100, objectFit: "cover" }}
+                    />
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>
