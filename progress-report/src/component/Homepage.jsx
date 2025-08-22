@@ -19,7 +19,7 @@ function Homepage() {
           <div>
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d96586.55554260759!2d3.860951656616234!3d6.705548528344323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x103968a66d1a278b%3A0xbc9c567eae180351!2sIjebu%20Ode%2C%20Ogun%20State!3m2!1d6.8248815!2d3.9191404!4m5!1s0x103945de81c3d5c1%3A0x53ad7cfc19cae1be!2sEpe%2C%20Lagos!3m2!1d6.586663199999999!2d3.9699874!5e1!3m2!1sen!2sng!4v1754670883125!5m2!1sen!2sng"
-              referrerpolicy="no-referrer-when-downgrade" 
+              referrerPolicy="no-referrer-when-downgrade" 
               className="w-full h-80 overflow-hidden rounded-lg shadow-lg"></iframe>
           </div>
           <p className="pt-0 font-extralight">Route from Google Map</p>

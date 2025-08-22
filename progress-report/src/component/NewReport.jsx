@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import ChainageInput from "./ChainageInput";
 import MetresDone from "./MetresDone";
 import { useReportStore } from "../store/useNewReport";
@@ -15,6 +15,14 @@ function NewReport() {
 
   const [startCh, setStartCh] = useState({ km: "", m: "" });
   const [endCh, setEndCh] = useState({ km: "", m: "" });
+
+  const handleStartChainage = useCallback((val) => {
+    setStartCh(val);
+  }, []);
+
+  const handleEndChainage = useCallback((val) => {
+    setEndCh(val);
+  }, []);
 
   const addReport = useReportStore((state) => state.addReport);
 
@@ -76,7 +84,7 @@ function NewReport() {
       <h1>New Report for: <span>{formatedDate}</span></h1>
       <div>
         <Link to="/">
-          <p>Home</p>
+          Home
         </Link>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -114,25 +122,11 @@ function NewReport() {
         </div>
         <div>
           <label>Starting CH</label>
-          <ChainageInput onChange={(val) => {
-            setStartCh(val);
-            setDailyReports((prev) => ({
-              ...prev,
-              startChainage: val,
-              metresDone: val
-            }));
-          }} reset={resetChainage} />
+          <ChainageInput onChange={handleStartChainage} resetSignal={resetChainage} />
         </div>
         <div>
           <label>Ending CH</label>
-          <ChainageInput onChange={(val) => {
-            setEndCh(val);
-            setDailyReports((prev) => ({
-              ...prev,
-              startChainage: val,
-              metresDone: val
-            }));
-          }} reset={resetChainage} />
+          <ChainageInput onChange={handleEndChainage} resetSignal={resetChainage} />
         </div>
 
         {/* New Metres Done */}
