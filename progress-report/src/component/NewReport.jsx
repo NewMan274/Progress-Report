@@ -84,9 +84,9 @@ function NewReport() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
-      <div className="flex mb-5">
-        <h1 className="text-2xl font-bold mb-2">
-          New Report for: <span className="text-blue-400">{formatedDate}</span>
+      <div className="flex gap-1.5 mb-5">
+        <h1 className="text-lg font-semibold mb-2">
+          New Report for: <span className="text-blue-400 text-2xl font-semibold">{formatedDate}</span>
         </h1>
         <div className="ml-auto pt-1.5">
           <Link to="/" className="text-blue-500 hover:underline">
