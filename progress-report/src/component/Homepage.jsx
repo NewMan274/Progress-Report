@@ -5,13 +5,13 @@ function Homepage() {
     <>
       <div className="grid sm:grid-rows-3 md:grid-rows-4 gap-3 bg-gray-100  text-gray-700">
         <section className="row-span-1 text-center px-20 py-5">
-          <h1 className="text-2xl font-bold mb-3 text-gray-900">Daily Progress Report</h1>
+          <h1 className="text-3xl font-extrabold mb-3 text-blue-500">Daily Progress Report</h1>
           <h3 className="text-lg font-semibold mb-2">
             CONSTRUCTION OF DEEP-SEA PORT ACCESS ROAD IN LAGOS STATE THROUGH EPE TO SHAGAMU-BENIN EXPRESSWAY (54.2KM) IN LAGOS AND OGUN STATES, CONTRACT NO: 6993C SECTION 3 EPE TO OMU IJEBU-IJEBU ODE.
             (27.51KM), OGUN STATE.
           </h3>
-          <p className="text-lg">Client: <span className="font-semibold">FEDERAL MINISTRY OF WORKS</span></p>
-          <p className="text-lg">Contractor: <span className="font-semibold">Dangote Industries Limited (DIL)</span></p>
+          <p className="text-lg">Client: <span className="font-semibold text-blue-400">FEDERAL MINISTRY OF WORKS</span></p>
+          <p className="text-lg">Contractor: <span className="font-semibold text-blue-400">Dangote Industries Limited (DIL)</span></p>
         </section>
 
         <section className="md:row-span-2 mx-10 md:mx-40 h-96 shadow-2xl rounded-lg bg-white px-2 items-center mt-0">
@@ -41,7 +41,7 @@ function Homepage() {
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
               </svg>
             </Link>
-            <h4 className="font-semibold text-center">Create New Report</h4>
+            <h4 className="font-semibold text-center  text-blue-600">Create New Report</h4>
             <p className="text-xs">Document today's progress</p>
           </div>
           <div className="bg-gray-100 p-4 shadow-lg rounded-lg justify-items-center w-56 md:w-80 hover:shadow-2xl transition-shadow duration-300">
@@ -59,7 +59,7 @@ function Homepage() {
                   d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
               </svg>
             </Link>
-            <h4 className="font-semibold text-center">View Archive</h4>
+            <h4 className="font-semibold text-center text-blue-600">View Archive</h4>
             <p className="text-xs">Browse past daily reports</p>
           </div>
         </section>

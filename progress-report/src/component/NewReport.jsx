@@ -53,9 +53,14 @@ function NewReport() {
       date: formatedDate,
       itemOfWork: dailyReports.itemOfWork,
       weatherCondition: dailyReports.weatherCondition,
-      startChainage: dailyReports.startChainage,
-      endChainage: dailyReports.endChainage,
-      metresDone: dailyReports.metresDone,
+      startChainage: startCh,
+      endChainage: endCh,
+      metresDone: {
+        startKm: startCh.km,
+        startM: startCh.m,
+        endKm: endCh.km,
+        endM: endCh.m,
+      },
       taskDescription: dailyReports.taskDescription,
       generalRemark: dailyReports.generalRemark,
       images: images.map(img => URL.createObjectURL(img)),
@@ -203,7 +208,7 @@ function NewReport() {
         </div>
         <button
           type="submit"
-          className="w-1/4 mx-auto mt-4 px-6 py-2 bg-green-500 text-white rounded font-semibold hover:bg-blue-700 transition"
+          className="w-1/4 mx-auto mt-4 px-6 py-2 bg-blue-400 text-white rounded font-semibold hover:bg-blue-700 transition"
         >
           Submit
         </button>
