@@ -23,13 +23,16 @@ Built with **React**, **Vite**, **Zustand**, and **Tailwind CSS**.
 ## 📂 Project Structure
 src/
 ├── components/
-│ ├── Archive.jsx # Displays all saved reports grouped by date
-│ ├── NewReport.jsx # Form for creating and submitting a new daily report
-│ └── Home.jsx # Homepage with project details (name, description, etc.)
+
+  │ ├── Archive.jsx # Displays all saved reports grouped by date
+  │ ├── NewReport.jsx # Form for creating and submitting a new daily report
+  │ └── Home.jsx # Homepage with project details (name, description, etc.)
 │
+
 ├── store/
-│ └── useNewReport.js # Zustand store for managing reports state
+  │ └── useNewReport.js # Zustand store for managing reports state
 │
+
 ├── App.jsx # Main application with routing (Home, New Report, Archive)
 ├── main.jsx # Entry point that renders <App /> into the DOM
 └── index.css # Global styles with Tailwind CSS imports
